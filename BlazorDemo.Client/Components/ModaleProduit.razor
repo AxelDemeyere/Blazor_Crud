@@ -16,84 +16,82 @@
                 <button type="button" class="btn-close" @onclick="Fermer" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <EditForm Model="_produit" OnValidSubmit="Enregistrer">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary class="alert alert-danger" />
+                    
                     <div class="mb-3">
                         <label for="nom" class="form-label">Nom *</label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="nom" 
-                               placeholder="Ex: Laptop Pro 15" 
-                               @bind="_produit.Nom"
-                               required />
+                        <InputText class="form-control" 
+                                   id="nom" 
+                                   placeholder="Ex: Laptop Pro 15" 
+                                   @bind-Value="_produit.Nom" />
+                        <ValidationMessage For="@(() => _produit.Nom)" class="text-danger" />
                     </div>
                     
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" 
-                                  id="description" 
-                                  rows="3" 
-                                  placeholder="Description du produit"
-                                  @bind="_produit.Description"></textarea>
+                        <InputTextArea class="form-control" 
+                                       id="description" 
+                                       rows="3" 
+                                       placeholder="Description du produit"
+                                       @bind-Value="_produit.Description" />
+                        <ValidationMessage For="@(() => _produit.Description)" class="text-danger" />
                     </div>
                     
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="prix" class="form-label">Prix *</label>
                             <div class="input-group">
-                                <input type="number" 
-                                       class="form-control" 
-                                       id="prix" 
-                                       step="0.01" 
-                                       min="0" 
-                                       placeholder="0.00"
-                                       @bind="_produit.Prix"
-                                       required />
+                                <InputNumber class="form-control" 
+                                             id="prix" 
+                                             placeholder="0.00"
+                                             @bind-Value="_produit.Prix" />
                                 <span class="input-group-text">€</span>
                             </div>
+                            <ValidationMessage For="@(() => _produit.Prix)" class="text-danger" />
                         </div>
                         
                         <div class="col-md-4 mb-3">
                             <label for="stock" class="form-label">Stock *</label>
-                            <input type="number" 
-                                   class="form-control" 
-                                   id="stock" 
-                                   min="0" 
-                                   placeholder="0"
-                                   @bind="_produit.Stock"
-                                   required />
+                            <InputNumber class="form-control" 
+                                         id="stock" 
+                                         placeholder="0"
+                                         @bind-Value="_produit.Stock" />
+                            <ValidationMessage For="@(() => _produit.Stock)" class="text-danger" />
                         </div>
                         
                         <div class="col-md-4 mb-3">
                             <label for="categorie" class="form-label">Catégorie *</label>
-                            <select class="form-select" 
-                                    id="categorie" 
-                                    @bind="_produit.Categorie"
-                                    required>
+                            <InputSelect class="form-select" 
+                                         id="categorie" 
+                                         @bind-Value="_produit.Categorie">
                                 <option value="">Sélectionner...</option>
                                 @foreach (var categorie in Enum.GetValues<EnumCategorie>())
                                 {
                                     <option value="@categorie">@categorie</option>
                                 }
-                            </select>
+                            </InputSelect>
+                            <ValidationMessage For="@(() => _produit.Categorie)" class="text-danger" />
                         </div>
                     </div>
                     
                     <div class="mb-3 form-check">
-                        <input type="checkbox" 
-                               class="form-check-input" 
-                               id="estActif" 
-                               @bind="_produit.EstActif" />
+                        <InputCheckbox class="form-check-input" 
+                                       id="estActif" 
+                                       @bind-Value="_produit.EstActif" />
                         <label class="form-check-label" for="estActif">
                             Produit actif
                         </label>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @onclick="Fermer">Annuler</button>
-                <button type="button" class="btn btn-primary" @onclick="Enregistrer">
-                    <i class="bi bi-save"></i> Enregistrer
-                </button>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @onclick="Fermer">Annuler</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Enregistrer
+                        </button>
+                    </div>
+                </EditForm>
             </div>
         </div>
     </div>

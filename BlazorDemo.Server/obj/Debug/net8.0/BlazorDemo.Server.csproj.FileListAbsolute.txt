@@ -277,3 +277,4 @@ C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Server\obj\Debug\net8.0\refint
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Server\obj\Debug\net8.0\BlazorDemo.Server.pdb
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Server\obj\Debug\net8.0\BlazorDemo.Server.genruntimeconfig.cache
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Server\obj\Debug\net8.0\ref\BlazorDemo.Server.dll
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Server\obj\Debug\net8.0\BlazorDemo.Server.sourcelink.json

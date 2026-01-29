@@ -21,3 +21,4 @@ C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\Blazor
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\refint\BlazorDemo.Shared.dll
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.pdb
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\ref\BlazorDemo.Shared.dll
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.sourcelink.json

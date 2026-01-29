@@ -2120,3 +2120,4 @@ C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Client\obj\Debug\net8.0\refint
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Client\obj\Debug\net8.0\BlazorDemo.Client.pdb
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Client\obj\Debug\net8.0\ref\BlazorDemo.Client.dll
 C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Client\obj\Debug\net8.0\scopedcss\Pages\TP_CRUD\PageProduit.razor.rz.scp.css
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Client\obj\Debug\net8.0\BlazorDemo.Client.sourcelink.json

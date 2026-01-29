@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 using System.ComponentModel.DataAnnotations;
 
 namespace BlazorDemo.Shared.Models;
@@ -31,20 +31,21 @@ public class Produit
 public class ProduitDto
 {
     [Required(ErrorMessage = "Le nom est obligatoire")]
-    [StringLength(100, MinimumLength = 2)]
+    [StringLength(100, MinimumLength = 2, ErrorMessage = "Le nom doit contenir entre 2 et 100 caractères")]
     public string Nom { get; set; } = "";
 
-    [StringLength(500)]
+    [StringLength(500, ErrorMessage = "La description ne peut pas dépasser 500 caractères")]
     public string? Description { get; set; }
 
     [Required(ErrorMessage = "Le prix est obligatoire")]
-    [Range(0.01, 99999.99)]
+    [Range(0.01, 99999.99, ErrorMessage = "Le prix doit être compris entre 0.01 et 99999.99")]
     public decimal Prix { get; set; }
 
     [Required(ErrorMessage = "La catégorie est obligatoire")]
+    [MinLength(1, ErrorMessage = "Veuillez sélectionner une catégorie")]
     public string Categorie { get; set; } = "";
 
-    [Range(0, 10000)]
+    [Range(0, 10000, ErrorMessage = "Le stock doit être compris entre 0 et 10000")]
     public int Stock { get; set; }
 
     public bool EstActif { get; set; } = true;
