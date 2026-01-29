@@ -1,0 +1,28 @@
+﻿<div class="d-inline-flex align-items-center gap-2 p-2 border rounded">
+    <button class="btn btn-sm @Couleur" @onclick="Decrementer" disabled="@(Valeur <= Min)">➖</button>
+    <span class="badge bg-secondary fs-5" style="min-width: 50px;">@Valeur</span>
+    <button class="btn btn-sm @Couleur" @onclick="Incrementer" disabled="@(Valeur >= Max)">➕</button>
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <span class="text-muted">@Label</span>
+    }
+</div>
+
+@code {
+    [Parameter] public int Valeur { get; set; }
+    [Parameter] public EventCallback<int> ValeurChanged { get; set; }
+    [Parameter] public int Min { get; set; } = 0;
+    [Parameter] public int Max { get; set; } = 100;
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string Couleur { get; set; } = "btn-primary";
+
+    private async Task Incrementer()
+    {
+        if (Valeur < Max) { Valeur++; await ValeurChanged.InvokeAsync(Valeur); }
+    }
+
+    private async Task Decrementer()
+    {
+        if (Valeur > Min) { Valeur--; await ValeurChanged.InvokeAsync(Valeur); }
+    }
+}

@@ -1,0 +1,29 @@
+﻿<h3>CarteProduit</h3>
+
+<div class="card h-100 @(EstSelectionne ? "border-primary border-2" : "")">
+    <div class="card-body">
+        <h5 class="card-title">@Titre</h5>
+        <p class="card-text text-muted">@Description</p>
+        <p class="card-text fs-4 fw-bold text-success">@Prix.ToString("C")</p>
+        <button class="btn btn-primary" @onclick="() => OnAcheter.InvokeAsync(Titre)">🛒 Acheter</button>
+    </div>
+    @if (EstSelectionne)
+    {
+        <div class="card-footer bg-primary text-white">✅ Sélectionné</div>
+    }
+</div>
+
+
+
+
+@code {
+    [Parameter]
+    public string Titre { get; set; } = "";
+
+    [Parameter] public string Description { get; set; } = "";
+    [Parameter] public decimal Prix { get; set; }
+    [Parameter] public bool EstSelectionne { get; set; }
+    [Parameter] public EventCallback<string> OnAcheter { get; set; }
+
+
+}

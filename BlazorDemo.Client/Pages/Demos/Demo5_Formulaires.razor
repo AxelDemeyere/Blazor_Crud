@@ -1,0 +1,91 @@
+@page "/demo5"
+
+<h1>5️⃣ Formulaires - <code>EditForm</code> et DTOs</h1>
+
+<div class="alert alert-success">
+    <h4>Concepts:</h4>
+    <ul>
+        <li><code>EditForm</code> - Formulaire Blazor</li>
+        <li><code>DataAnnotationsValidator</code> - Validation</li>
+        <li><code>InputText</code>, <code>InputNumber</code>, <code>InputSelect</code></li>
+    </ul>
+</div>
+
+<hr />
+
+<div class="card mb-3">
+    <div class="card-header">Formulaire de Contact</div>
+    <div class="card-body">
+        <EditForm Model="@contact" OnValidSubmit="EnvoyerContact">
+            <DataAnnotationsValidator />
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Nom *</label>
+                    <InputText class="form-control" @bind-Value="contact.Nom" />
+                    <ValidationMessage For="@(() => contact.Nom)" class="text-danger small" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Email *</label>
+                    <InputText class="form-control" @bind-Value="contact.Email" />
+                    <ValidationMessage For="@(() => contact.Email)" class="text-danger small" />
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Sujet *</label>
+                <InputSelect class="form-select" @bind-Value="contact.Sujet">
+                    <option value="">-- Choisir --</option>
+                    <option value="Question">Question</option>
+                    <option value="Support">Support</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => contact.Sujet)" class="text-danger small" />
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Message *</label>
+                <InputTextArea class="form-control" rows="4" @bind-Value="contact.Message" />
+                <ValidationMessage For="@(() => contact.Message)" class="text-danger small" />
+            </div>
+            
+            <button type="submit" class="btn btn-primary">📧 Envoyer</button>
+        </EditForm>
+        
+        @if (envoye)
+        {
+            <div class="alert alert-success mt-3">✅ Message envoyé!</div>
+        }
+    </div>
+</div>
+
+<hr />
+
+<div class="card">
+    <div class="card-header bg-light">📝 Code Source</div>
+    <div class="card-body bg-dark">
+        <pre class="mb-0 text-success"><code>&lt;EditForm Model="@@contact" OnValidSubmit="Envoyer"&gt;
+    &lt;DataAnnotationsValidator /&gt;
+    &lt;InputText @@bind-Value="contact.Nom" /&gt;
+    &lt;ValidationMessage For="@@(() =&gt; contact.Nom)" /&gt;
+    &lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;/EditForm&gt;
+
+// DTO avec validation
+public class ContactDto
+{
+    [Required] public string Nom { get; set; }
+    [EmailAddress] public string Email { get; set; }
+}</code></pre>
+    </div>
+</div>
+
+@code {
+    private ContactDto contact = new() { Priorite = "Normal" };
+    private bool envoye = false;
+
+    private void EnvoyerContact()
+    {
+        envoye = true;
+        contact = new ContactDto { Priorite = "Normal" };
+    }
+}

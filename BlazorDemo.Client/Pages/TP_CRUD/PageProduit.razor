@@ -1,0 +1,44 @@
+﻿@page "/Produit"
+@using BlazorDemo.Client.Components
+@using BlazorDemo.Shared.Models
+@using ProduitModel = BlazorDemo.Shared.Models.Produit
+@inject IProduitServiceClient ProduitService
+
+<header>
+    <h1>Produits</h1>
+    <div class="border-top border-1 border-secondary mt-2 mb-4"></div>
+</header>
+
+<main>
+    <section>
+        <div class="actions">
+            <button class="btn btn-primary" @onclick="OuvrirModale">Ajouter un produit</button>
+            <button class="btn btn-outlined" @onclick="Charger">Actualiser</button>
+        </div>
+        <FiltresProduit @bind-Recherche="_recherche"
+                        @bind-CategorieSelectionnee="_categorieSelectionnee"
+                        OnFiltreChange="@Filtrer" />
+    </section>
+    
+    <TableauProduit Produits="@ProduitsFiltres"
+                    Chargement="@_chargement"
+                    OnRecharger="@Charger"
+                    OnModifier="@ModifierProduit"
+                    OnSupprimer="@SupprimerProduit" />
+
+    <ProduitInfo Produits="@_produits" />
+</main>
+
+<ModaleProduit Afficher="@_afficherModale"
+               Titre="@(_isEditMode ? "Modifier le produit" : "Ajouter un produit")"
+               ProduitAEditer="@_produitAEditer"
+               OnFermer="@FermerModale"
+               OnEnregistrer="@EnregistrerProduit" />
+
+<ConfirmationSuppression Afficher="@_afficherConfirmation"
+                         Message="@_messageConfirmation"
+                         OnAnnuler="@AnnulerSuppression"
+                         OnConfirmer="@ConfirmerSuppression" />
+
+
+

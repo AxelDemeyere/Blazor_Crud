@@ -1,0 +1,30 @@
+﻿<div class="modal fade @(Afficher ? "show" : "")" 
+     tabindex="-1" 
+     style="display: @(Afficher ? "block" : "none")"
+     aria-hidden="@(!Afficher)">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmer la suppression
+                </h5>
+                <button type="button" class="btn-close btn-close-white" @onclick="Annuler" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-0">@Message</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="Annuler">Annuler</button>
+                <button type="button" class="btn btn-danger" @onclick="Confirmer">
+                    <i class="bi bi-trash"></i> Supprimer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Afficher)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+

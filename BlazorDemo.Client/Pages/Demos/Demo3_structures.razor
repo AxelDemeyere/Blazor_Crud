@@ -1,0 +1,61 @@
+﻿@page "/demo3"
+
+<h1>Structures iteratives et conditionnelles</h1>
+
+<div class="card mb-3">
+    <div class="card-header">@@if / @@else</div>
+    <div class="card-body">
+        <label>Âge: <strong>@age</strong></label>
+        <input type="range" class="form-range" min="0" max="100" @bind="age" @bind:event="oninput" />
+        
+        @if (age < 18)
+        {
+            <div class="alert alert-warning"> Mineur</div>
+        }
+        else if (age < 65)
+        {
+            <div class="alert alert-success"> Adulte</div>
+        }
+        else
+        {
+            <div class="alert alert-info"> Senior</div>
+        }
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">@@foreach</div>
+    <div class="card-body">
+        <ul class="list-group mb-3">
+            @foreach (var fruit in fruits)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @fruit
+                    <button class="btn btn-sm btn-danger" @onclick="() => fruits.Remove(fruit)">✕</button>
+                </li>
+            }
+        </ul>
+        <div class="input-group">
+            <input type="text" class="form-control" @bind="nouveauFruit" placeholder="Nouveau fruit" />
+            <button class="btn btn-primary" @onclick="AjouterFruit">Ajouter</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    
+    private int age = 25;
+    private List<string> fruits = new() { "Pomme", "Banane", "Orange" };
+    private string nouveauFruit = "";
+    private int etoiles = 5;
+
+    private void AjouterFruit()
+    {
+        if (!string.IsNullOrWhiteSpace(nouveauFruit))
+        {
+            fruits.Add(nouveauFruit);
+            nouveauFruit = "";
+        }
+    }
+
+}

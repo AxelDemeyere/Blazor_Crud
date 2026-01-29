@@ -1,0 +1,23 @@
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\bin\Debug\net8.0\BlazorDemo.Shared.deps.json
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\bin\Debug\net8.0\BlazorDemo.Shared.dll
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\bin\Debug\net8.0\BlazorDemo.Shared.pdb
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.AssemblyInfoInputs.cache
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.AssemblyInfo.cs
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.sourcelink.json
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.dll
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\refint\BlazorDemo.Shared.dll
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.pdb
+C:\Users\Moham\Documents\CDA5_2ITECH\16 - .Net\09 - Blazor\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\ref\BlazorDemo.Shared.dll
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\bin\Debug\net8.0\BlazorDemo.Shared.deps.json
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\bin\Debug\net8.0\BlazorDemo.Shared.dll
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\bin\Debug\net8.0\BlazorDemo.Shared.pdb
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.AssemblyInfoInputs.cache
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.AssemblyInfo.cs
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.csproj.CoreCompileInputs.cache
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.dll
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\refint\BlazorDemo.Shared.dll
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\BlazorDemo.Shared.pdb
+C:\Users\a.demeyere\Desktop\BlazorDemo\BlazorDemo.Shared\obj\Debug\net8.0\ref\BlazorDemo.Shared.dll

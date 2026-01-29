@@ -1,0 +1,55 @@
+﻿@page "/demo2"
+
+<h1>Binding</h1>
+
+<div class="card">
+    <div class="card-header">
+       @@bind variables
+    </div>
+    <div class="card-body">
+        <input type="text" class="form-control" @bind="texte"  />
+          <p >Vous avez ecrit : @texte</p>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">@@bind:event="oninput" (temps réel)</div>
+    <div class="card-body">
+        <input type="text" class="form-control" @bind="texteTempReel" @bind:event="oninput" />
+        <p class="mt-2">En temps réel: <strong>@texteTempReel</strong></p>
+    </div>
+</div>
+
+
+<div class="card mb-3">
+    <div class="card-header">@@onclick</div>
+    <div class="card-body">
+        <p>Compteur: <span class="badge bg-primary fs-4">@compteur</span></p>
+        <button class="btn btn-success me-2" @onclick="() => compteur++">➕</button>
+        <button class="btn btn-danger me-2" @onclick="() => compteur--">➖</button>
+        <button class="btn btn-secondary" @onclick="() => compteur = 0">🔄</button>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">Checkbox</div>
+    <div class="card-body">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" @bind="isAccepted" />
+            <label class="form-check-label">J'accepte</label>
+        </div>
+        <p class="mt-2">État: <span class="badge @(isAccepted ? "bg-success" : "bg-danger")">@(isAccepted ? " Oui" : " Non")</span></p>
+    </div>
+</div>
+
+
+@code {
+    private string texte = "";
+
+    private string texteTempReel = "";
+
+    private int compteur = 0;
+
+    private bool isAccepted = false;
+
+}

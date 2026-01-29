@@ -1,0 +1,16 @@
+﻿@using BlazorDemo.Shared.Models
+
+<div class="filters">
+    <input type="text" 
+           placeholder="Rechercher un produit..." 
+           class="form-control" 
+           value="@Recherche"
+           @oninput="OnRechercheChange" />
+    <select class="form-select" value="@CategorieSelectionnee" @onchange="OnCategorieChange">
+        <option value="">Toutes les catégories</option>
+        @foreach (var categorie in Enum.GetValues<EnumCategorie>())
+        {
+            <option value="@categorie">@categorie</option>
+        }
+    </select>
+</div>

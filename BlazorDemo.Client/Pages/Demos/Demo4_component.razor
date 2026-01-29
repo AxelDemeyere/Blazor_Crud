@@ -1,0 +1,70 @@
+﻿@page "/demo4"
+@using BlazorDemo.Client.Components
+
+<h1>Components </h1>
+
+
+    <div class="card mb-3">
+    <div class="card-header">[Parameter] et EventCallback</div>
+    <div class="card-body">
+        <div class="row">
+            @foreach (var p in produits)
+            {
+                <div class="col-md-4 mb-3">
+                    <CarteProduit 
+                        Titre="@p.Nom"
+                        Description="@p.Desc"
+                        Prix="@p.Prix"
+                        EstSelectionne="@(selection == p.Nom)"
+                        OnAcheter="Acheter" />
+                </div>
+            }
+        </div>
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <div class="alert alert-info">@message</div>
+        }
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">Two-way binding @@bind-Valeur</div>
+    <div class="card-body">
+        <div class="mb-3">
+            <CompteurReutilisable @bind-Valeur="qte1" Label="Quantité A" Couleur="btn-success" />
+        </div>
+        <div class="mb-3">
+            <CompteurReutilisable @bind-Valeur="qte2" Min="0" Max="10" Label="Quantité B" Couleur="btn-warning" />
+        </div>
+        <p><strong>Total: @(qte1 + qte2)</strong></p>
+    </div>
+</div>
+
+
+@code {
+    private List<(string Nom, string Desc, decimal Prix)> produits = new()
+    {
+        ("Laptop", "Ordinateur puissant", 1299.99m),
+        ("Souris", "Gaming RGB", 79.99m),
+        ("Clavier", "Mécanique", 149.99m)
+    };
+
+
+    private string selection = "";
+
+    private string message = "";
+
+    private int qte1 = 5;
+
+    private int qte2 = 0;
+
+
+    private void Acheter(string nom)
+    {
+        selection = nom;
+        message = " Ajouté : " + nom;
+
+    }
+
+    
+}

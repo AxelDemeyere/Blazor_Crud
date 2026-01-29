@@ -1,0 +1,386 @@
+@page "/demo-routing"
+@page "/demo-routing/{Nom}"
+@page "/demo-routing/{Nom}/{Age:int}"
+
+<h1>🧭 Demo Routing - Navigation dans Blazor</h1>
+
+<div class="alert alert-primary">
+    <h4>Concepts appris:</h4>
+    <ul>
+        <li><code>@@page "/route"</code> - Route simple</li>
+        <li><code>@@page "/route/{Param}"</code> - Paramètre de route</li>
+        <li><code>@@page "/route/{Param:int}"</code> - Contrainte de type</li>
+        <li><code>@@page "/route/{Param?}"</code> - Paramètre optionnel</li>
+        <li><code>[Parameter]</code> - Récupérer le paramètre</li>
+        <li><code>[SupplyParameterFromQuery]</code> - Query string</li>
+        <li><code>NavigationManager</code> - Navigation programmatique</li>
+        <li><code>&lt;NavLink&gt;</code> - Liens avec état actif</li>
+    </ul>
+</div>
+
+<hr />
+
+@* ========== SECTION 1: URL ACTUELLE ========== *@
+<div class="card mb-4">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">📍 1. URL Actuelle (NavigationManager)</h5>
+    </div>
+    <div class="card-body">
+        <p><strong>URL complète:</strong> <code>@Navigation.Uri</code></p>
+        <p><strong>Base URI:</strong> <code>@Navigation.BaseUri</code></p>
+        <p><strong>Chemin relatif:</strong> <code>@CheminRelatif</code></p>
+    </div>
+</div>
+
+@* ========== SECTION 2: PARAMÈTRES DE ROUTE ========== *@
+<div class="card mb-4">
+    <div class="card-header bg-warning text-dark">
+        <h5 class="mb-0">🔤 2. Paramètres de Route</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Nom (string):</strong> 
+                    @if (string.IsNullOrEmpty(Nom))
+                    {
+                        <span class="text-muted">(non défini)</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success fs-6">@Nom</span>
+                    }
+                </p>
+                <p><strong>Age (int):</strong> 
+                    @if (Age == 0)
+                    {
+                        <span class="text-muted">(non défini)</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-primary fs-6">@Age ans</span>
+                    }
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p class="mb-2"><strong>Testez ces URLs:</strong></p>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="/demo-routing" class="text-decoration-none">
+                            <code>/demo-routing</code>
+                        </a>
+                        <small class="text-muted">- Sans paramètre</small>
+                    </li>
+                    <li>
+                        <a href="/demo-routing/Mohamed" class="text-decoration-none">
+                            <code>/demo-routing/Mohamed</code>
+                        </a>
+                        <small class="text-muted">- Avec nom</small>
+                    </li>
+                    <li>
+                        <a href="/demo-routing/Mohamed/35" class="text-decoration-none">
+                            <code>/demo-routing/Mohamed/35</code>
+                        </a>
+                        <small class="text-muted">- Avec nom et âge</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ========== SECTION 3: QUERY STRINGS ========== *@
+<div class="card mb-4">
+    <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0">❓ 3. Query Strings</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Catégorie:</strong> 
+                    @if (string.IsNullOrEmpty(Category))
+                    {
+                        <span class="text-muted">(non défini)</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-info fs-6">@Category</span>
+                    }
+                </p>
+                <p><strong>Recherche (q):</strong> 
+                    @if (string.IsNullOrEmpty(SearchQuery))
+                    {
+                        <span class="text-muted">(non défini)</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-dark fs-6">@SearchQuery</span>
+                    }
+                </p>
+                <p><strong>Page:</strong> 
+                    <span class="badge bg-secondary fs-6">@(Page ?? 1)</span>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p class="mb-2"><strong>Testez ces URLs:</strong></p>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="/demo-routing?category=IT" class="text-decoration-none">
+                            <code>?category=IT</code>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/demo-routing?q=blazor" class="text-decoration-none">
+                            <code>?q=blazor</code>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/demo-routing?category=Web&q=razor&page=2" class="text-decoration-none">
+                            <code>?category=Web&q=razor&page=2</code>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ========== SECTION 4: NAVIGATION PROGRAMMATIQUE ========== *@
+<div class="card mb-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">🚀 4. Navigation Programmatique</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-2">
+            <div class="col-auto">
+                <button class="btn btn-outline-primary" @onclick="NaviguerVersAccueil">
+                    🏠 Accueil
+                </button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-outline-success" @onclick="NaviguerAvecParametre">
+                    👤 Avec paramètre
+                </button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-outline-info" @onclick="NaviguerAvecQuery">
+                    🔍 Avec query string
+                </button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-outline-warning" @onclick="NaviguerComplet">
+                    ⚡ Complet
+                </button>
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            <label class="form-label"><strong>Navigation personnalisée:</strong></label>
+            <div class="input-group">
+                <span class="input-group-text">/demo-routing/</span>
+                <input type="text" class="form-control" @bind="customNom" placeholder="Nom" />
+                <span class="input-group-text">/</span>
+                <input type="number" class="form-control" @bind="customAge" placeholder="Age" style="max-width: 100px" />
+                <button class="btn btn-primary" @onclick="NaviguerPersonnalise">
+                    Naviguer →
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ========== SECTION 5: NAVLINK ========== *@
+<div class="card mb-4">
+    <div class="card-header bg-purple text-white" style="background-color: #6f42c1;">
+        <h5 class="mb-0">🔗 5. NavLink (liens avec état actif)</h5>
+    </div>
+    <div class="card-body">
+        <p class="mb-2">Les <code>NavLink</code> ajoutent automatiquement la classe <code>active</code>:</p>
+        
+        <nav class="nav nav-pills">
+            <NavLink class="nav-link" href="/demo-routing" Match="NavLinkMatch.All">
+                Démo Routing
+            </NavLink>
+            <NavLink class="nav-link" href="/demo-routing/Test" Match="NavLinkMatch.Prefix">
+                Avec "Test"
+            </NavLink>
+            <NavLink class="nav-link" href="/demo-routing/Admin/25" Match="NavLinkMatch.Prefix">
+                Admin/25
+            </NavLink>
+        </nav>
+        
+        <div class="alert alert-light mt-3 mb-0">
+            <small>
+                <strong>Match.All:</strong> URL doit correspondre exactement<br/>
+                <strong>Match.Prefix:</strong> URL doit commencer par le href
+            </small>
+        </div>
+    </div>
+</div>
+
+@* ========== SECTION 6: CONTRAINTES ========== *@
+<div class="card mb-4">
+    <div class="card-header bg-danger text-white">
+        <h5 class="mb-0">🔒 6. Contraintes de Route</h5>
+    </div>
+    <div class="card-body">
+        <p>La route <code>/demo-routing/{Nom}/{Age:int}</code> n'accepte qu'un entier pour Age:</p>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-success">✓ URLs valides:</p>
+                <ul>
+                    <li><a href="/demo-routing/Jean/30"><code>/demo-routing/Jean/30</code></a></li>
+                    <li><a href="/demo-routing/Marie/25"><code>/demo-routing/Marie/25</code></a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <p class="text-danger">✗ URLs invalides (404):</p>
+                <ul>
+                    <li><code>/demo-routing/Jean/trente</code> - "trente" n'est pas un int</li>
+                    <li><code>/demo-routing/Jean/abc</code> - "abc" n'est pas un int</li>
+                </ul>
+            </div>
+        </div>
+        
+        <table class="table table-sm table-bordered mt-3 mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Contrainte</th>
+                    <th>Exemple</th>
+                    <th>Valeurs acceptées</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>:int</code></td><td><code>{Id:int}</code></td><td>42, -1, 0</td></tr>
+                <tr><td><code>:guid</code></td><td><code>{Id:guid}</code></td><td>a1b2c3d4-e5f6-...</td></tr>
+                <tr><td><code>:bool</code></td><td><code>{Active:bool}</code></td><td>true, false</td></tr>
+                <tr><td><code>:datetime</code></td><td><code>{Date:datetime}</code></td><td>2024-01-15</td></tr>
+                <tr><td><code>:decimal</code></td><td><code>{Price:decimal}</code></td><td>19.99</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr />
+
+@* ========== CODE SOURCE ========== *@
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">📝 Code Source</h5>
+    </div>
+    <div class="card-body bg-dark">
+        <pre class="mb-0 text-success" style="font-size: 0.85rem;"><code>@@page "/demo-routing"
+@@page "/demo-routing/{Nom}"
+@@page "/demo-routing/{Nom}/{Age:int}"
+
+@@inject NavigationManager Navigation
+
+@("<")!-- Paramètres de route --@(">")
+&lt;p&gt;Nom: @@Nom&lt;/p&gt;
+&lt;p&gt;Age: @@Age ans&lt;/p&gt;
+
+@("<")!-- Query strings --@(">")
+&lt;p&gt;Catégorie: @@Category&lt;/p&gt;
+&lt;p&gt;Recherche: @@SearchQuery&lt;/p&gt;
+
+@("<")!-- Navigation programmatique --@(">")
+&lt;button @@onclick="Naviguer"&gt;Go&lt;/button&gt;
+
+@("<")!-- NavLink avec état actif --@(">")
+&lt;NavLink href="/demo-routing" Match="NavLinkMatch.All"&gt;
+    Accueil
+&lt;/NavLink&gt;
+
+@@code {
+    // Paramètres de route
+    [Parameter]
+    public string? Nom { get; set; }
+
+    [Parameter]
+    public int Age { get; set; }
+
+    // Query strings
+    [SupplyParameterFromQuery]
+    public string? Category { get; set; }
+
+    [SupplyParameterFromQuery(Name = "q")]
+    public string? SearchQuery { get; set; }
+
+    [SupplyParameterFromQuery]
+    public int? Page { get; set; }
+
+    // Navigation programmatique
+    void Naviguer()
+    {
+        Navigation.NavigateTo("/demo-routing/Mohamed/30");
+    }
+
+    void NaviguerAvecQuery()
+    {
+        Navigation.NavigateTo("/demo-routing?category=IT&q=blazor");
+    }
+}</code></pre>
+    </div>
+</div>
+
+@code {
+    // ========== INJECTION ==========
+    [Inject]
+    public NavigationManager Navigation { get; set; } = default!;
+
+    // ========== PARAMÈTRES DE ROUTE ==========
+    [Parameter]
+    public string? Nom { get; set; }
+
+    [Parameter]
+    public int Age { get; set; } = 0;
+
+    // ========== QUERY STRINGS ==========
+    [SupplyParameterFromQuery]
+    public string? Category { get; set; }
+
+    [SupplyParameterFromQuery(Name = "q")]
+    public string? SearchQuery { get; set; }
+
+    [SupplyParameterFromQuery]
+    public int? Page { get; set; }
+
+    // ========== ÉTAT LOCAL ==========
+    private string customNom = "";
+    private int customAge = 0;
+
+    // ========== PROPRIÉTÉS CALCULÉES ==========
+    private string CheminRelatif => Navigation.Uri.Replace(Navigation.BaseUri, "/");
+
+    // ========== MÉTHODES DE NAVIGATION ==========
+    private void NaviguerVersAccueil()
+    {
+        Navigation.NavigateTo("/demo-routing");
+    }
+
+    private void NaviguerAvecParametre()
+    {
+        Navigation.NavigateTo("/demo-routing/Visiteur");
+    }
+
+    private void NaviguerAvecQuery()
+    {
+        Navigation.NavigateTo("/demo-routing?category=Blazor&q=routing&page=1");
+    }
+
+    private void NaviguerComplet()
+    {
+        Navigation.NavigateTo("/demo-routing/Expert/42?category=Advanced&q=navigation");
+    }
+
+    private void NaviguerPersonnalise()
+    {
+        if (!string.IsNullOrWhiteSpace(customNom))
+        {
+            var url = customAge > 0 
+                ? $"/demo-routing/{customNom}/{customAge}"
+                : $"/demo-routing/{customNom}";
+            Navigation.NavigateTo(url);
+        }
+    }
+}

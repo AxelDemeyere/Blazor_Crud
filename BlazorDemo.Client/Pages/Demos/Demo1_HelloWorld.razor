@@ -1,0 +1,82 @@
+﻿@page "/demo1"
+
+<h1>Hello world</h1>
+
+<p>Hello world</p>
+
+
+<div class="card">
+    <div class="card-header">
+      variables simples
+    </div>
+    <div class="card-body">
+     <h5>Bonjour, @nom !</h5>
+        <p class="card-text">Langage : @langage</p>
+        <p class="card-text">Version : @version</p>
+        <p class="card-text">Actif : @(isActif ? "Oui" : "Non")</p>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header"> Date et Heure</div>
+    <div class="card-body">
+        <p><strong>Maintenant:</strong> @DateTime.Now.ToString("dddd dd MMMM yyyy HH:mm:ss")</p>
+        <p><strong>Date courte:</strong> @DateTime.Now.ToShortDateString()</p>
+        <p><strong>Heure:</strong> @DateTime.Now.ToShortTimeString()</p>
+        <p><strong>Année:</strong> @DateTime.Now.Year</p>
+        <p><strong>Jour de l'année:</strong> @DateTime.Now.DayOfYear</p>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header">Expressions C#</div>
+    <div class="card-body">
+        <p>2 + 2 = @(2 + 2)</p>
+        <p>10 × 5 = @(10 * 5)</p>
+        <p>100 ÷ 3 = @((100.0 / 3).ToString("F2"))</p>
+        <p>2^10 = @Math.Pow(2, 10)</p>
+        <p>√144 = @Math.Sqrt(144)</p>
+        <p>PI = @Math.PI.ToString("F5")</p>
+        <p>Aléatoire (1-100): @Random.Shared.Next(1, 101)</p>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header"> Méthodes</div>
+    <div class="card-body">
+        <p><strong>Message:</strong> @ObtenirUnMessage()</p>
+        <p><strong>Salutation:</strong> @Saluer("Blazor")</p>
+        <p><strong>Nom complet:</strong> @ObtenirDesInfos()</p>
+        <p><strong>Majuscules:</strong> @nom.ToUpper()</p>
+        <p><strong>Longueur du nom:</strong> @nom.Length caractères</p>
+        <p><strong>Inversé:</strong> @Inverser(nom)</p>
+    </div>
+</div>
+
+
+
+@code {
+    private string nom = "Mohamed";
+
+    private string langage = "Dotnet";
+
+    private double version = 8.0;
+
+    private bool isActif = true;
+
+
+
+    private string ObtenirUnMessage() => "Je suis une message";
+
+    private string Saluer(string qui) => $"Bonjour, {qui} !";
+
+    private string ObtenirDesInfos() => $"{nom} - {langage} - {version} ";
+
+    private string Inverser(string teste) => new string(teste.Reverse().ToArray());
+
+
+
+
+
+
+}
