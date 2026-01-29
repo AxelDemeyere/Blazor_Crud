@@ -30,7 +30,7 @@
 </main>
 
 <ModaleProduit Afficher="@_afficherModale"
-               Titre="@(_isEditMode ? "Modifier le produit" : "Ajouter un produit")"
+               Titre="@(_isEditMode ? "Modifier le produit " + @_produitAEditer.Nom : "Ajouter un produit")"
                ProduitAEditer="@_produitAEditer"
                OnFermer="@FermerModale"
                OnEnregistrer="@EnregistrerProduit" />
@@ -39,6 +39,3 @@
                          Message="@_messageConfirmation"
                          OnAnnuler="@AnnulerSuppression"
                          OnConfirmer="@ConfirmerSuppression" />
-
-
-
